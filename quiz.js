@@ -92,7 +92,7 @@ function askQuestionsSerially() {
 }
 
 // Call the function to start asking questions
-askQuestionsSerially();
+ askQuestionsSerially();
 
 
 
