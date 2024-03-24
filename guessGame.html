@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Number Game</title>
+</head>
+<body>
+    <h1>Guess the Number Game</h1>
+    <p>Guess a number between 20 and 40:</p>
+    <input type="number" id="userGuess">
+    <button onclick="checkGuess()">Check</button>
+    <p id="result"></p>
+
+    <script>
+        const minNumber = 20;
+        const maxNumber = 40;
+        const maxAttempts = 5;
+
+        let secretNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
+        let attempts = 0;
+
+        function checkGuess() {
+            const userGuess = parseInt(document.getElementById('userGuess').value);
+
+            if (isNaN(userGuess) || userGuess < minNumber || userGuess > maxNumber) {
+                document.getElementById('result').textContent = 'Please enter a valid number between 20 and 40.';
+                return;
+            }
+
+            attempts++;
+
+            if (userGuess === secretNumber) {
+                document.getElementById('result').textContent = `Congratulations! You guessed the number ${secretNumber} in ${attempts} attempts.`;
+            } else if (userGuess < secretNumber) {
+                document.getElementById('result').textContent = 'Try a higher number.';
+            } else {
+                document.getElementById('result').textContent = 'Try a lower number.';
+            }
+
+            if (attempts >= maxAttempts) {
+                document.getElementById('result').textContent = `Sorry, you've reached the maximum number of attempts. The secret number was ${secretNumber}.`;
+            }
+        }
+    </script>
+</body>
+</html>
